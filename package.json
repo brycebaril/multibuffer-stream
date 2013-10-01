@@ -1,6 +1,6 @@
 {
   "name": "multibuffer-stream",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "A streaming interface for multibuffer.",
   "main": "index.js",
   "directories": {
