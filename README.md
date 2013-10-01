@@ -8,7 +8,7 @@ multibuffer-stream
 
 A streaming version of [multibuffer](http://npm.im/multibuffer)
 
-This is useful for packaging your buffers to cross transport layers that may alter the stream frame boundaries. (e.g. combine chunks or break in the middle of them) so they can be re-assembled into the original bufferss.
+This is useful for packaging your buffers to cross transport layers that may alter the stream frame boundaries (e.g. combine chunks or break in the middle of them) so they can be re-assembled into the original buffers.
 
 ```javascript
 var mbstream = require("multibuffer-stream")
