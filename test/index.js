@@ -81,6 +81,7 @@ test("through smoosher", function (t) {
     .pipe(mbstream.packStream())
     .pipe(smoosher())
     .pipe(mbstream.unpackStream())
+    //.pipe(through2(function (c, e, cb) { console.log(c); this.push(c); cb() }))
     .pipe(ucFirst())
     .pipe(concat(function (buffer) {
       t.equals(buffer.toString(), "MyDearAuntSally")

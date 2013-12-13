@@ -7,15 +7,14 @@
     "test": "test"
   },
   "dependencies": {
-    "multibuffer": "~2.0.0",
+    "multibuffer": "~2.1.0",
     "through2": "~0.2.3",
-    "through2-map": "~1.2.0",
-    "bops": "~0.1.0"
+    "bops": "~0.1.1"
   },
   "devDependencies": {
-    "tape": "~1.1.1",
-    "stream-spigot": "~2.1.2",
-    "terminus": "~1.0.2"
+    "tape": "~2.3.0",
+    "stream-spigot": "~3.0.1",
+    "terminus": "~1.0.4"
   },
   "scripts": {
     "test": "node test/"

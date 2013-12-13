@@ -1,9 +1,11 @@
 var multibuffer = require("multibuffer")
-var through2map = require("through2-map")
 var through2 = require("through2")
 var bops = require("bops")
 
-module.exports.packStream = through2map.ctor(multibuffer.encode)
+module.exports.packStream = through2.ctor(function (chunk, encoding, callback) {
+  this.push(multibuffer.encode(chunk))
+  return callback()
+})
 module.exports.unpackStream = unpackStream
 
 function unpackStream() {
@@ -22,8 +24,9 @@ function unpackStream() {
     }
   }
   function _transform(chunk, encoding, callback) {
-    if (this._bufferState != null)
+    if (this._bufferState != null) {
       this._bufferState = bops.join([this._bufferState, chunk])
+    }
     else
       this._bufferState = chunk
     _flush.call(this, callback)
