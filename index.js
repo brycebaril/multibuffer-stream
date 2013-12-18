@@ -1,6 +1,5 @@
 var multibuffer = require("multibuffer")
 var through2 = require("through2")
-var bops = require("bops")
 
 module.exports.packStream = through2.ctor(function (chunk, encoding, callback) {
   this.push(multibuffer.encode(chunk))
@@ -25,7 +24,7 @@ function unpackStream() {
   }
   function _transform(chunk, encoding, callback) {
     if (this._bufferState != null) {
-      this._bufferState = bops.join([this._bufferState, chunk])
+      this._bufferState = Buffer.concat([this._bufferState, chunk])
     }
     else
       this._bufferState = chunk
