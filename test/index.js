@@ -6,13 +6,12 @@ var terminus = require("terminus")
 var concat = terminus.concat
 var tail = terminus.tail
 var through2 = require("through2")
-var bops = require("bops")
 
 // Brutally chunks stream into <= 3 byte buffers
 var chunker = through2.ctor(function (chunk, encoding, callback) {
   var len = chunk.length
   for (var i = 0; i < len; i += 3) {
-    this.push(bops.subarray(chunk, i, i + 3))
+    this.push(chunk.slice(i, i + 3))
   }
   callback()
 })
@@ -22,7 +21,7 @@ var smoosher = through2.ctor(function (chunk, encoding, callback) {
   if (this._prev == null)
     this._prev = chunk
   else {
-    this.push(bops.join([this._prev, chunk]))
+    this.push(Buffer.concat([this._prev, chunk]))
     this._prev = null
   }
   callback()
