@@ -7,13 +7,13 @@
     "test": "test"
   },
   "dependencies": {
-    "multibuffer": "maxogden/multibuffer#no-bops",
+    "multibuffer": "~2.2.0",
     "through2": "~0.2.3"
   },
   "devDependencies": {
-    "tape": "~2.3.0",
-    "stream-spigot": "~3.0.1",
-    "terminus": "maxogden/node-terminus#no-bops"
+    "tape": "~2.3.2",
+    "stream-spigot": "~3.0.2",
+    "terminus": "~1.0.7"
   },
   "scripts": {
     "test": "node test/"
