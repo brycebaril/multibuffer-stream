@@ -1,10 +1,7 @@
 multibuffer-stream
 =====
 
-[![NPM](https://nodei.co/npm/multibuffer-stream.png)](https://nodei.co/npm/multibuffer-stream/)
-
-[![david-dm](https://david-dm.org/brycebaril/multibuffer-stream.png)](https://david-dm.org/brycebaril/multibuffer-stream/)
-[![david-dm](https://david-dm.org/brycebaril/multibuffer-stream/dev-status.png)](https://david-dm.org/brycebaril/multibuffer-stream#info=devDependencies/)
+[![NPM](https://nodei.co/npm/multibuffer-stream.svg)](https://nodei.co/npm/multibuffer-stream/)
 
 A streaming version of [multibuffer](http://npm.im/multibuffer)
 
@@ -36,6 +33,16 @@ spigot(["my", "dear", "aunt", "sally"])
 /*
 MyDearAuntSally
  */
+
+// Convert a stream into a multibuffer stream with `wrap`
+// **NOTE** You **MUST** know the full length of the stream first!
+var fs = require("fs")
+var file = "./README.md"
+var size = fs.statSync(file).size
+fs.createReadStream(file)
+  .pipe(mbstream.wrap(size))     // convert to multibuffer-stream
+  .pipe(mbstream.unpackStream()) // convert back to regular stream
+
 ```
 
 API
@@ -50,6 +57,13 @@ Create a `stream.Transform` instance that will convert buffers written to it int
 ---
 
 Create a `stream.Transform` instance that will re-assemble the original packed stream.
+
+`.wrap(byteLength)`
+---
+
+Creates a `Transform` stream that will wrap a **known length** stream as a multibuffer (i.e. prefix the first chunk with the length).
+
+This means it is not suitable for never-ending streams.
 
 LICENSE
 =======

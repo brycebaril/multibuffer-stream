@@ -87,3 +87,13 @@ test("through smoosher", function (t) {
       t.end()
     }))
 })
+
+test("wrap", function (t) {
+  var input = spigot(["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k"])
+    .pipe(mbstream.wrap(11))
+    .pipe(mbstream.unpackStream())
+    .pipe(concat(function (buffer) {
+      t.equals(buffer.toString(), "abcdefghijk")
+      t.end()
+    }))
+})
